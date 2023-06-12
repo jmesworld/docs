@@ -1,0 +1,82 @@
+---
+sidebar_position: 5
+---
+
+import Admonition from '@theme/Admonition';
+
+# Join a network
+
+You can either setup your own local private network or join a public network. If you want to join a public network (e.g. Testnet), you can skip to [join a public network](#join-a-public-network).
+
+## Set up a local private network
+
+### 1. Create a single node
+
+The simplest JMES network you can set up is a local testnet with just a single node. In a single-node environment, you have one account and are the only validator signing blocks for your private network.
+
+1. Initialize your genesis file that will bootstrap the network. Replace the following variables with your own information:
+
+   ```bash
+     jmesd init --chain-id=<private-network-id> <node-moniker>
+   ```
+
+2. Generate a JMES account. Replace the variable with your account name:
+
+   ```bash
+   jmesd keys add <account-name>
+   ```
+### 2. Add your account to the genesis
+
+Run the following commands to add your account and set the initial balance:
+
+```bash
+jmesd add-genesis-account $(jmesd keys show <account-name> -a) 20000000000000ujmes
+jmesd gentx <my-account> 100000000ujmes --chain-id=<private-network-id>
+jmesd collect-gentxs
+```
+
+### 3. Start your private JMES network
+
+Run the following command to start your private network:
+
+```bash
+jmesd start
+# OR 
+systemctl start jmesd    # runs as a system service in the background
+```
+
+If the private JMES network is set up correctly, your jmesd node will be running on `tcp://localhost:26656`, listening for incoming transactions, and signing blocks.
+
+## Join a public network
+
+### 1. Select a network
+
+Specify the network you want to join by choosing the corresponding **genesis file** and **address book**:
+
+	| Network     | Type    | Genesis                                                                                        | Address book                                                                              |
+| :---------- | :------ | :------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------- | 
+| `jmes-testnet-1`   | Testnet | [Genesis Link](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-testnet-1/genesis.json) |  Peer List Community maintained by [JMES](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-testnet-1/addrbook.json) |
+| `jmes-888`   | Testnet | [Genesis Link](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-888/genesis.json) |  Peer List Community maintained by [JMES](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-888/addrbook.json) |
+
+### 2. Download genesis file and address book
+
+**Genesis-transaction** specifies the account balances and parameters at the start of the network to use when replaying transactions and syncing.
+
+**Addressbook** lists a selection of peers for your node to dial to in order to discover other nodes in the network. Public address books of peers are made available by the JMES community.
+
+Choose a `testnet` or `mainnet` address type and download the appropriate genesis-transaction and addressbook. Links to these are posted in the [Select a network](#1-select-a-network) section.
+
+- For default jmesd configurations, the `genesis` and `addressbook` files should be placed under `~/.jmes/config/genesis.json` and `~/.jmes/config/addrbook.json` respectively.
+
+**Example**:
+
+```bash
+# Obtain the genesis for jmes-888:
+wget https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-testnet-1/genesis.json -O ~/.jmes/config/genesis.json
+
+# Obtain the addressbook for the jmes-888:
+wget https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-testnet-1/addrbook.json -O ~/.jmes/config/addrbook.json
+```
+
+Continue to the [Sync](sync.mdx) page to find out more about syncing your node.
+

@@ -1,0 +1,76 @@
+import Admonition from '@theme/Admonition';
+
+# Install JMESd
+
+JMESd is the command-line interface and daemon that connects to JMES and enables you to interact with the JMES blockchain. JMES Core is the official Golang reference implementation of the JMES node software.
+
+This guide is for developers who want to install JMESd and interact with the JMES Core without running a full node. If you want to run a full node or join a network, use the documentation on how to [run a full JMES node](../../full-node/run-a-full-jmes-node/README.mdx).
+
+### Prerequisites
+
+- [Golang v1.18 linux/amd64](https://golang.org/doc/install)
+- Ensure your `GOPATH` and `GOBIN` environment variables are set up correctly.
+- Linux users: install [build-essential](http://linux-command.org/en/build-essential.html).
+
+<Admonition type="danger" icon="🔥" title="JMESd for Mac">
+
+If you are using a Mac, follow the [JMESd Mac installation guide](./jmesd-mac.mdx).
+
+</Admonition>
+
+## From binary
+
+The easiest way to install JMESd and JMES Core is by downloading a pre-built binary for your operating system. You can find the latest binaries on the [releases page](https://github.com/jmesworld/core/releases). If you have a Mac, follow the [Mac installation instructions](./jmesd-mac.mdx).
+
+## From source
+
+### 1. Get the JMES Core source code
+
+Use `git` to retrieve [JMES Core](https://github.com/jmesworld/core/) and check out the `main` branch, which contains the latest stable release.
+
+```
+git clone https://github.com/jmesworld/core
+cd core
+git checkout [latest version]
+```
+
+### 2. Build JMES Core from source
+
+Build JMES Core, and install the JMESd executable to your `GOPATH` environment variable.
+
+```bash
+make install
+```
+
+### 3. Verify your JMES Core installation
+
+Verify that JMES Core is installed correctly.
+
+```bash
+jmesd version --long
+```
+
+If JMES Core is installed correctly, you will get the following output:
+
+```bash
+name: jmes
+server_name: jmesd
+version: v2.0.0
+commit: ea682c41e7e71ba0b182c9e7f989855fb9595885
+build_tags: netgo,ledger
+go: go version go1.18.2 darwin/amd64
+```
+
+<Admonition type="tip" icon="💡">
+
+If the `jmesd: command not found` error message is returned, confirm that the Go binary path is correctly configured by running the following command:
+
+```
+export PATH=$PATH:$(go env GOPATH)/bin
+```
+
+</Admonition>
+
+## Next steps
+
+For more information on JMESd commands and usage, visit [Using JMESd](using-jmesd.mdx).

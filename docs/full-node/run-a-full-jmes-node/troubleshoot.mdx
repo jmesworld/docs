@@ -1,0 +1,66 @@
+---
+sidebar_position: 8
+---
+
+import Admonition from '@theme/Admonition';
+
+# Reset and troubleshooting
+
+## Complete reset
+
+Occasionally you may need to perform a comlpete reset of your node due to data corruption or misconfiguration. Resetting will remove all data in `~/.jmes/data` and the addressbook in `~/.jmes/config/addrbook.json` and reset the node to genesis state.
+
+To perform a complete reset of your JMESd state, execute the following command in your terminal:
+
+```
+jmesd tendermint unsafe-reset-all
+```
+
+Running this command successfully will produce the following log:
+
+```
+[ INF ] Removed existing address book file=/home/user/.jmes/config/addrbook.json
+[ INF ] Removed all blockchain history dir=/home/user/.jmes/data
+[ INF ] Reset private validator file to genesis state keyFile=/home/user/.jmes/config/priv_validator_key.json stateFile=/home/user/.jmes/data/priv_validator_state.json
+```
+
+<Admonition type="tip" icon="💡" title="Check the adressbook">
+
+After resetting, make sure the addressbook contains peer addresses and is in the correct spot. If not, [download an adressbook](join-a-network.mdx#1-select-a-network) and place it in `~/.jmes/config/`.
+
+</Admonition>
+
+### Change Genesis
+
+To change the genesis version, delete `~/.jmes/config/genesis.json`.
+
+You can recreate a genesis version via the following steps:
+
+```bash
+ jmesd add-genesis-account $(jmesd keys show <account-name> -a) 100000000ubJMES,1000usd
+ jmesd gentx <account-name> 10000000ubJMES --chain-id=<network-name>
+ jmesd collect-gentxs
+```
+
+### Reset personal data
+
+<Admonition type="danger" icon="🔥">
+
+You may be unable to use your node and its associated accounts after changing your personal data. Do not perform this action unless your node is disposable.
+
+</Admonition>
+
+To change your personal data to a pristine state, delete both `~/.jmes/config/priv_validator_state.json` and `~/.jmes/config/node_key.json`.
+
+### Node health
+
+A healthy node will have the following files in place and populated:
+
+- Addressbook `~/.jmes/config/addrbook.json`
+- Genesis file `~/.jmes/config/genesis.json`
+- Validator state `~/.jmes/config/priv_validator_state.json`
+- Node key `~/.jmes/config/node_key.json`
+
+### Resync
+
+You can proceed to [resync manually](sync.mdx#sync-from-genesis) or [using a snapshot](sync.mdx#quicksync).

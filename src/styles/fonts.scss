@@ -1,0 +1,37 @@
+@font-face {
+  src: url('../../static/fonts/coolvetica.woff') format('woff');
+  font-family: 'Coolvetica';
+  font-weight: 100;
+}
+
+@font-face {
+  src: url('../../static/fonts/Montserrat-Regular.ttf') format('ttf');
+  font-family: 'Montserrat';
+  font-weight: 400;
+}
+
+@font-face {
+  src: url('../../static/fonts/Montserrat-SemiBold.ttf') format('ttf');
+  font-family: 'MontserratSemi';
+  font-weight: 600;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+
+  a,
+  strong,
+  b {
+    font-family: 'MontserratSemi', sans-serif;
+    font-weight: 600;
+  }
+}
+/*
+.anchor,
+.cards {
+  img {
+    display: none !important; // Hide icons, remove this when we have icons
+  }
+}
+*/

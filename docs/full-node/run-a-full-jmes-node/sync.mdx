@@ -1,0 +1,198 @@
+---
+sidebar_position: 6
+---
+
+import Admonition from '@theme/Admonition';
+
+# Sync
+
+This guide will walk you through how to [sync the chain from genesis](#sync-from-genesis) or use a [snapshot](#sync-from-snapshot) for a quicker sync.
+
+<Admonition type="caution" icon="☢️" title="Setup for successful sync">
+
+Before you attempt to sync your node, confirm that you have properly set up your [system configuration](./system-config.mdx#system-configuration) and [built JMES core](./build-jmes-core.mdx#get-the-jmes-core-source-code).
+
+</Admonition>
+
+## Sync from genesis
+
+### JMES-testnet-1
+
+1. Update the `persistent_peers` setting with a list of stable persistent peers in your `config.toml` file. Use the following commands:
+
+```
+PEERS=2a39d42bb299b913e5dbbaf9a5e458fb3ff7536b@164.92.191.45:26656,eb490967a016bbcb361ab2ba1f6d2a2ca1eb8593@46.101.197.51:26656
+sed -i.bak -e "s|^persistent_peers *=.*|persistent_peers = \"$PEERS\"|" $HOME/.jmes/config/config.toml
+```
+
+2. Finally, you can start the syncing process:
+
+```py
+jmesd start
+# OR
+systemctl start jmesd    # runs as a system service in the background
+```
+
+<Admonition type="caution" icon="☢️" title="Sync start times">
+
+Nodes take about an hour to start syncing. This wait time is normal. Before troubleshooting a sync, please wait an hour for the sync to start.
+
+</Admonition>
+
+From here, you can [monitor the sync](#monitor-the-sync). Make sure to check on your node periodically to ensure optimal performance.
+
+### Udo mainnet
+
+1. Update the `persistent_peers` setting with a list of stable persistent peers in your `config.toml` file. Use the following commands:
+
+```
+PEERS=2a39d42bb299b913e5dbbaf9a5e458fb3ff7536b@164.92.191.45/:26656,eb490967a016bbcb361ab2ba1f6d2a2ca1eb8593@46.101.197.51:26656
+sed -i.bak -e "s|^persistent_peers *=.*|persistent_peers = \"$PEERS\"|" $HOME/.jmes/config/config.toml
+```
+
+2. Finally, you can start the syncing process:
+
+```py
+jmesd start
+# OR
+systemctl start jmesd    # runs as a system service in the background
+```
+
+<Admonition type="caution" icon="☢️" title="Sync start times">
+
+Nodes take about an hour to start syncing. This wait time is normal. Before troubleshooting a sync, please wait an hour for the sync to start.
+
+</Admonition>
+
+From here, you can [monitor the sync](#monitor-the-sync). Make sure to check on your node periodically to ensure optimal performance.
+
+<details> 
+<summary> Healthy Node Status Example </summary>
+<p>
+
+```json
+{
+  "NodeInfo": {
+    "protocol_version": { "p2p": "8", "block": "11", "app": "0" },
+    "id": "c7323e759deafdc953e86344fd42cdb7654f18f2",
+    "listen_addr": "165.232.126.11:26656",
+    "network": "jmes-testnet-1",
+    "version": "v0.34.21-terra.1",
+    "channels": "40202122233038606100",
+    "moniker": "rockbridge",
+    "other": { "tx_index": "on", "rpc_address": "tcp://165.232.126.11:26657" }
+  },
+  "SyncInfo": {
+    "latest_block_hash": "831AE8E7CA3CFEC269DA4A800C7EAD8F7FF9EF072A8691BE21263F47FCA8E23C",
+    "latest_app_hash": "128F4B8FA0BB0F85CE47CA0B871704D014C2B6CA702B7A11DE584C1C351F9252",
+    "latest_block_height": "4293",
+    "latest_block_time": "2023-05-04T01:02:12.387416454Z",
+    "earliest_block_hash": "A121600E4F9338A276F7BDC1ED11BA3F20B06E20709A68CCF37D03B96BE44A50",
+    "earliest_app_hash": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+    "earliest_block_height": "1",
+    "earliest_block_time": "2023-05-03T18:34:13.094118969Z",
+    "catching_up": true
+  },
+  "ValidatorInfo": {
+    "Address": "6868853EC398BB6A860FA516D9334B923B7AF26E",
+    "PubKey": {
+      "type": "tendermint/PubKeyEd25519",
+      "value": "dkOFal7VimemCDGfxgOJY9XmqbQF1NAegXBSM0IO8WQ="
+    },
+    "VotingPower": "0"
+  }
+}
+```
+
+</p>
+</details>
+
+### Fast-sync for testing
+
+Sometimes you may want to sync faster by foregoing checks. You may do so by adding the following flag to the `jmesd start` command.
+
+<Admonition type="caution" icon="☢️">
+
+The following command should only be used by advanced users in non-production environments:
+
+```bash
+jmesd start --x-crisis-skip-assert-invariants
+```
+
+</Admonition>
+
+## Sync from snapshot
+
+You can significantly accelerate the synchronization process by providing jmesd with a recent snapshot of the network state. Snapshots are made publicly available by members of the JMES community one example can be downloaded from [Polkachu - Udo Mainnet](https://polkachu.com/state_sync/jmes). [Polkachu - Pisco Testnet](https://polkachu.com/testnets/jmesInstructions) is provided by Polkachu, and not maintained as part of this documentation.
+
+### Before using snapshots
+
+Certain files will need to be absent or deleted before downloading a snapshot. A quicksync replaces blockchain data with a custom snapshot. For most use cases, a "pruned" version is adequate. Pruned versions will have certain transactions removed from the archive to improve node performance. If you are running a node for archival purposes, you will want an `archive` or `default` download.
+
+After choosing the appropriate download type, examine your node and ensure that `.jmes/data` is empty.
+
+**Example**:
+
+```bash
+6:22PM INF Removed all blockchain history dir=/home/ubuntu/.jmes/data
+```
+
+<Admonition type="caution" icon="☢️">
+
+If you are a validator, ensure that you do not remove your private key.
+
+Example of a removed private key:
+
+```bash
+6:22PM INF Reset private validator file to genesis state keyFile=/home/ubuntu/.jmes/config/priv_validator_key.json stateFile=/home/ubuntu/.jmes/data/priv_validator_state.json
+```
+
+</Admonition>
+
+If you have an address book downloaded, you may keep it. Otherwise, you will need to download the [appropriate addressbook](./join-a-network.mdx#join-a-public-network).
+
+With an address book downloaded, run the following:
+
+```bash
+jmesd start
+jmesd status
+# It will take a few seconds for jmesd to start.
+```
+
+## Monitor the sync
+
+Your node is catching up with the network by replaying all the transactions from genesis and recreating the blockchain state locally. You can verify this process by checking the `latest_block_height` in the `SyncInfo` of the `jmesd status` response:
+
+```json
+  {
+    "SyncInfo": {
+        "latest_block_height": "42", <-----
+        "catching_up"        : true
+    },
+  ...
+  }
+```
+
+## Sync complete
+
+You can tell that your node is in sync with the network when `SyncInfo.catching_up` in the `jmesd status` response returns `false` and the `latest_block_height` corresponds to the public network blockheight.
+
+```bash
+jmesd status
+```
+
+**Example**:
+
+```json
+  {
+    "SyncInfo": {
+        "latest_block_height": "7356350",
+        "catching_up"        : false
+    },
+  ...
+  }
+```
+
+## Congratulations!
+
+You've successfully joined a network as a full node operator. If you are a validator, continue to [manage a JMES validator](../manage-a-jmes-validator/README.mdx) for next steps.

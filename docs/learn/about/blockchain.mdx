@@ -1,0 +1,181 @@
+import Admonition from '@theme/Admonition';
+
+# JMES Blockchain
+
+## What is JMES?
+
+JMES is an [open-source blockchain](https://github.com/jmesworld/core) hosting a vibrant ecosystem of decentralized applications (dApps) and top-tier developer tools. 
+
+## What is bJMES? 
+
+bJMES is the JMES protocol’s native [staking](../glossary.mdx#staking) token. bJMES is used for [governance](#governance) and in mining. Users [stake bJMES](#staking) to validators who record and verify transactions on the [blockchain](../glossary.mdx#blockchain) in exchange for rewards from transaction fees.
+
+## Validators
+
+Validators are the miners of the JMES [blockchain](../glossary.mdx#blockchain). They are responsible for securing the JMES blockchain and ensuring its accuracy. Validators run programs called full nodes which allow them to verify each transaction made on the JMES network. Validators propose blocks, vote on their validity, and add each new block to the chain in exchange for staking rewards from transaction fees. Users can stake their bJMES to validators in exchange for staking rewards. Validators also play an important role in the governance of the JMES protocol.
+
+For more information on validators, visit the [Validator FAQ](../../full-node/manage-a-jmes-validator/faq.mdx).
+
+### Consensus
+
+The JMES blockchain is a proof-of-stake blockchain, powered by the [Cosmos SDK](https://cosmos.network/) and secured by a system of verification called the Tendermint consensus.
+
+The following process explains how Tendermint consensus works. For more information on the Tendermint consensus, visit the [official Tendermint documentation](https://docs.tendermint.com/).
+
+1. A validator called a **proposer** is chosen to submit a new block of transactions.
+2. Validators vote in two rounds on whether they accept or reject the proposed block. If a block is rejected, a new proposer is selected and the process starts again.
+3. If accepted, the block is signed and added to the chain.
+4. The transaction fees from the block are distributed as staking rewards to validators and delegators. Proposers get rewarded extra for their participation.
+
+This process repeats, adding new blocks of transactions to the chain. Each validator has a copy of all transactions made on the network, which they compare against the proposed block of transactions before voting. Because multiple independent validators take place in consensus voting, it is infeasible for any false block to be accepted. In this way, validators protect the integrity of the JMES blockchain and ensure the validity of each transaction.
+
+## Staking
+
+Staking is the process of bonding bJMES to a validator in exchange for staking rewards.
+
+The JMES protocol only allows the top 100 validators to participate in consensus. A validator's rank is determined by their stake or the total amount of bJMES bonded to them. Although validators can bond bJMES to themselves, they mainly amass larger stakes from delegators. Validators with larger stakes get chosen more often to propose new blocks and earn proportionally more rewards.
+
+<Admonition type="info" icon="☢️" title="Initial Distribution Period">
+
+Note that in the first 28 days of launch, zero stake is required to help bootstrap the network via the [Initial Distribution Period](whitepaper.mdx#24-initial-distribution-period)
+
+</Admonition>
+
+### Delegators
+Delegators are users who want to receive rewards from consensus without running a full node. Any user that stakes bJMES is a delegator. Delegators stake their bJMES to a validator, adding to a validator’s weight, or total stake. In return, delegators receive a portion of transaction fees as staking rewards.
+
+<Admonition type="caution" icon="☢️" title="Who owns staked bJMES?">
+
+Staked bJMES never leaves the possession of the delegator. Even though it can’t be traded freely, staked bJMES is never owned by a validator. For more information, visit the [Validator FAQ](../../full-node/manage-a-jmes-validator/faq.mdx#can-a-validator-run-away-with-a-delegators-luna).
+
+</Admonition>
+
+
+
+### Phases of bJMES
+
+To start receiving rewards, delegators bond their bJMES to a validator. The bonding process adds a delegator's bJMES to a validator's stake, which helps validators to participate in consensus.
+
+bJMES exists in the following three phases:
+
+- **Unbonded**: bJMES that can be freely traded and is not staked to a validator.
+- **Bonded**: bJMES that is staked to a validator. Bonded bJMES accrues staking rewards. bJMES bonded to validators in Keplr Wallet can’t be traded freely.
+- **Unbonding**: bJMES that is in the process of becoming unbonded from a validator and does not accrue rewards. This process takes 21 days to complete.
+
+### Bonding, staking, and delegating
+
+Generally, the terms bonding, staking, and delegating can be used interchangeably, as they happen in the same step. A delegator delegates bJMES to a validator, the bJMES gets bonded to the validator, and the bonded bJMES gets added to the validator's stake.
+
+Delegators can bond bJMES to any validator in the [active set](../glossary.mdx#active-set) using the delegate function in Keplr Wallet. Delegators start earning staking rewards the moment they bond or stake to a validator.
+
+### Unbonding
+
+Delegators can unbond or unstake their bJMES using the undelegate function in Keplr Wallet. The unbonding process takes 21 days to complete. During this period, the unbonding bJMES can't be traded, and no staking rewards accrue.
+
+<Admonition type="caution" icon="☢️">
+
+After funds are undelegated, they will be locked for a period of 21 days.  Once this process has started, there is no option for reversal.  After this period has concluded, the funds will be transferred to your wallet where they will once again be available to carry out transactions with.  If you would like to simply stake with another validator, you may utilize the redelegating process which occurs immediately without the need to wait for processing.
+
+</Admonition>
+
+
+The 21-day unbonding process assists in the long-term stability of the JMES protocol. The unbonding period discourages volatility by locking staked bJMES in the system for at least 21 days. In exchange, delegators receive staking rewards, further incentivizing network stability.
+
+### Redelegation
+
+Redelegating instantly sends staked bJMES from one validator to another. Instead of waiting for the 21-day unstaking period, a user can redelegate their staked bJMES at any time using Keplr Wallet's redelegate function. Validators receiving redelegations are barred from further redelegating any amount of bJMES to any validator for 21 days.
+
+<Admonition type="caution" icon="☢️">
+
+When a user redelegates staked bJMES from one validator to another, the validator receiving the staked bJMES is barred from making further redelegation transactions for 21 days. This restriction only applies to the wallet that made the redelegation transaction.
+
+</Admonition>
+
+## Rewards
+
+The JMES protocol incentivizes validators and delegators with staking rewards from gas fees and inflation rewards:
+
+- [Gas](../fees.mdx#gas): Compute fees added on to each transaction to avoid spamming. Validators set minimum gas prices and reject transactions that have implied gas prices below this threshold.
+
+- [Inflation rewards](../../develop/module-specifications/spec-mint.mdx): Every block, new bJMES is minted and released to validators and delegators as staking rewards. The rate for the minting of this new bJMES is fixed at 7% per year. 
+
+For more information on fees, visit the [fee page](../fees.mdx).
+
+At the end of every block, transaction fees and inflation rewards are distributed to each validator and their delegators proportional to their staked amount. Validators can keep a portion of rewards to pay for their services. This portion is called commission. The rest of the rewards are distributed to delegators according to their staked amounts.
+
+### Slashing
+
+Running a validator is a big responsibility. Validators must meet strict standards and constantly monitor and participate in the consensus process. Slashing is the penalty for misbehaving validators. When a validator gets slashed, they lose a small portion of their stake as well as a small portion of their delegator's stake. Slashed validators also get jailed, or excluded, from consensus for a period of time.
+
+<Admonition type="danger" icon="🔥" title="The risks of staking">
+
+Slashing affects validators and delegators. When a validator gets slashed, delegators who stake to that validator also get slashed. Slashing is proportional to a delegator's staked amount. Though slashing is rare and usually results in a small penalty, it does occur. Delegators should monitor their validators closely, do their research, and understand the risks of staking bJMES.
+
+</Admonition>
+
+Slashing occurs under the following conditions:
+
+- **Double signing**: When a validator signs two different blocks with the same chain ID at the same height.
+- **Downtime**: When a validator is unresponsive or can't be reached for a period of time.
+- **Missed votes**: When a validator misses votes in consensus.
+
+Validators monitor each other closely and can submit evidence of misbehaviour. Once discovered, the misbehaving validator will have a small portion of their funds slashed. Offending validators will also be jailed or excluded from consensus for a period of time. Even simple issues such as malfunctions or downtimes from upgrading can lead to slashing.
+
+For more information on slashing, visit the [slashing module](../../develop/module-specifications/spec-slashing.mdx).
+
+## Governance
+
+The JMES protocol is a decentralized public [blockchain](../glossary.mdx#blockchain) governed by community members. Governance is the democratic process that allows users and validators to make changes to the JMES protocol. Community members submit, vote, and implement proposals.
+
+### Proposals
+
+Proposals start as ideas within the community on JMES's [Discord](https://discord.jmes.art/), please join the discussion there to find out more about the Propoal process.
+
+### Voting process
+
+Community members vote with their staked bJMES. One staked bJMES equals one vote. If a user fails to specify a vote, their vote defaults to the validator they are staked to. Validators vote with their entire stake unless specified by delegators. For this reason, it is very important that each delegator votes according to their preferences.
+
+The following is a basic outline of the governance process. Visit the [governance module](../../develop/module-specifications/spec-governance.mdx) for more details.
+
+1. A user submits a proposal and a one-week deposit period begins.
+
+2. Users deposit bJMES as collateral to back the proposal. This period ends once a minimum threshold of 512 bJMES is deposited. Deposits are to protect against spam.
+
+3. The one-week vote period begins.
+    The voting options are:
+    - `Yes`: In favor.
+    - `No`: Not in favor.
+    - `NoWithVeto`: Not in favor, the deposit should be burned.
+    - `Abstain`: Voter abstains. Abstain votes count toward meeting `Quorum`.
+
+4. The votes are tallied.
+
+    Proposals pass if they meet three conditions:
+
+    - `Quorum` is met: at least 30% of all staked bJMES must vote.
+    - The total number of `NoWithVeto` votes is less than 33.4% of the total vote.
+    - `Threshold` is met: the number of `Yes` votes is greater than the number of `no` and `NoWithVeto` votes. `Abstain` votes are excluded from the `Threshold` tally. 
+
+
+    If the previous conditions are not met, the proposal is rejected.
+
+    For a more in-depth look at the tallying process, visit the [Governance module specification](../../develop/module-specifications/spec-governance.mdx#tallying).
+5. Accepted proposals get put into effect.
+6. Deposits get refunded or burned.
+
+Once accepted, the changes described in a governance proposal are automatically put into effect by the proposal handler. Generic proposals, such as a passed `TextProposal`, must be reviewed by the JMES team and community, and they must be manually implemented.
+
+### Deposits
+
+Deposits protect against unnecessary proposals and spam. Users can veto any proposal they deem to be spam by voting `NoWithVeto`.
+
+Deposits get refunded if all of the following conditions are met:
+- The minimum deposit of 512 bJMES is reached within the one-week deposit period.
+- `Quorum` is met: the number of total votes is greater than 30% of all staked bJMES
+- The total number of `NoWithVeto` votes is less than 33.4% of the total vote.
+- A vote returns a majority of `Yes` or `No` votes.
+
+Deposits are burned under any of the following conditions:
+- The minimum deposit of 512 bJMES is not reached within the one-week deposit period.
+- `Quorum` is not met: the number of total votes after the one-week voting period is less than 30% of all staked bJMES.
+- the number of `NoWithVeto` votes is above 33.4% of the total vote.

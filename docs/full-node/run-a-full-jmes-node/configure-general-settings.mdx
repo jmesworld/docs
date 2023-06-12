@@ -1,0 +1,83 @@
+---
+sidebar_position: 4
+---
+
+import Admonition from '@theme/Admonition';
+
+# Configure general settings
+
+## Initialize and configure moniker
+
+Initialize the node with a human-readable name:
+
+```bash
+jmesd init <your_custom_moniker> # ex., jmesd init michaelscott-node
+```
+
+<Admonition type="caution" icon="☢️" title="Moniker characters">
+
+Monikers can only contain ASCII characters. Using Unicode characters will render your node unreachable by other peers in the network.
+
+</Admonition>
+
+You can update your node's moniker by editing the `moniker` field in `~/.jmes/config/config.toml`.
+
+## Update minimum gas prices
+
+1. Open `~/.jmes/config/app.toml`.
+
+2. Modify `minimum-gas-prices` and set the minimum price of gas a validator will accept to validate a transaction and to prevent spam.
+
+The recommended setting is:
+`minimum-gas-prices = "0.15ujmes"`
+
+**Example**:
+
+```toml
+# The minimum gas prices a validator is willing to accept for processing a
+# transaction. A transaction's fees must meet the minimum of any denomination
+# specified in this config (e.g. 0.25token1;0.0001token2).
+minimum-gas-prices = "0.01133ujmes"
+
+```
+
+## [Optional] Public RPC Configuration
+If you would like your node's RPC to be publicly available and serve requests, follow the steps below. This is not compulsory.
+
+1. Open `~/.jmes/config/config.toml`.
+
+2. Locate the `RPC Server Configuration Options` section (`[rpc]`).
+
+3. Change `laddr = "tcp://127.0.0.1:26657"` to `laddr = "tcp://<YOUR_PUBLIC_IP_ADDRESS>:26657"`.
+```toml
+    # TCP or UNIX socket address for the RPC server to listen on
+    laddr = "tcp://<YOUR_PUBLIC_IP_ADDRESS>:26657"   # Example: laddr = "tcp://164.92.191.45:26657"
+```
+
+4. Open `~/.jmes/config/client.toml`.
+
+5. Change `node = "tcp://localhost:26657"` to `node = "tcp://<YOUR_PUBLIC_IP_ADDRESS>:26657"`.
+
+```toml
+    # <host>:<port> to Tendermint RPC interface for this chain
+    node = "tcp://<YOUR_PUBLIC_IP_ADDRESS>:26657"   # Example: node = "tcp://164.92.191.45:26657"
+```
+
+## Set up `external_address` in `config.toml`
+
+In order to be added to the address book in seed nodes, you need to configure `external_address` in `config.toml`. This addition will prevent continuous reconnections. The default P2P_PORT is `26656`.
+
+1. Open `~/.jmes/config/config.toml`.
+
+2. Locate the `P2P Configuration Options` section (`[p2p]`).
+
+3. Change `external_address = ":26656"` to `external_address = "<YOUR_PUBLIC_IP_ADDRESS>:26656"`.
+
+```sh
+# Address to advertise to peers for them to dial
+# If empty, will use the same port as the laddr,
+# and will introspect on the listener or use UPnP
+# to figure out the address. ip and port are required
+# example: 159.89.10.97:26656
+external_address = "<YOUR_PUBLIC_IP_ADDRESS>:26656" 
+```

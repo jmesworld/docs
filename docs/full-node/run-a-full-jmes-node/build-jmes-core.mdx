@@ -1,0 +1,106 @@
+---
+sidebar_position: 2
+---
+
+import Admonition from '@theme/Admonition';
+
+# Build JMES Core
+
+JMES Core is the official Golang reference implementation of the JMES node software. Use this guide to install JMES Core and jmesd, the command-line interface and daemon that connects to JMES and enables you to interact with the JMES blockchain.
+
+## Get the JMES Core source code
+
+1. Use `git` to retrieve [JMES Core](https://github.com/jmesworld/core/), and check out the `feat/winning_grants` branch, which contains the latest stable release. You can find the latest tag on the [tags page](https://github.com/jmesworld/core/tags) or via autocomplete in your terminal: type `git checkout v` and press `<TAB>`.
+
+   ```
+   git clone -b feat/winning_grants https://github.com/jmesworld/core
+   ```
+
+2. Use `git` to retrieve the jmesworld version of [Cosmos SDK](https://github.com/jmesworld/cosmos-sdk/), and check out the `v0.0.99-alpha.3` tag, which contains the latest stable release. Also, find the path to this folder for use in step 4.
+
+   ```py
+   git clone https://github.com/jmesworld/cosmos-sdk.git
+   ```
+   ```py
+   #  Switch to your cosmos-sdk folder
+   cd cosmos-sdk 
+   ```
+   ```py
+   # Checkout the latest tagged version to a local branch
+   git checkout tags/v0.0.99-alpha.3 -b latest
+   ```
+   ```py
+   # Note the path to the folder and return to the home directory 
+   pwd   # e.g. /root/cosmos-sdk
+   cd ..
+   ```
+
+3. Similarly, use `git` to retrieve the jmesworld version of [Tendermint](https://github.com/jmesworld/tendermint/), and check out the `v0.99.0-alpha.1` tag, which contains the latest stable release. Also, find the path to this folder for use in step 4.
+
+   ```py
+   git clone https://github.com/jmesworld/tendermint.git
+   ```
+   ```py
+   #  Switch to your tendermint folder
+   cd tendermint 
+   ```
+   ```py
+   # Checkout the latest tagged version to a local branch
+   git checkout tags/v0.99.0-alpha.3 -b latest
+   ```
+   ```py
+   # Note the path to the folder and return to the home directory 
+   pwd   # e.g. /root/tendermint
+   cd ..
+   ```
+
+4. Replace cosmos-sdk and tendermint dependencies in the `replace` section of the `go.mod` file. Ensure you replace `<PATH TO YOUR local folder>` with those nnoted in Steps 2 & 3  above.
+
+   ```py
+   cd core
+
+   sed -i 's|github.com/cosmos/cosmos-sdk => github.com/jmesworld/cosmos-sdk v0.46.0-jmes.1| github.com/cosmos/cosmos-sdk => <PATH TO YOUR cosmos-sdk folder>|g' go.mod
+
+   #Example: sed -i 's|github.com/cosmos/cosmos-sdk => github.com/jmesworld/cosmos-sdk v0.46.0-jmes.1|github.com/cosmos/cosmos-sdk => /root/cosmos-sdk|g' go.mod
+
+   ```
+    ```py
+   sed -i 's|github.com/tendermint/tendermint => github.com/jmesworld/tendermint v0.34.21-jmes.1| github.com/tendermint/tendermint => <PATH TO YOUR tendermint folder>|g' go.mod
+
+   #sed -i 's|github.com/tendermint/tendermint => github.com/jmesworld/tendermint v0.34.21-jmes.1| github.com/tendermint/tendermint => /root/tendermint|g' go.mod
+
+   ```
+
+5. Build JMES Core. This will install the JMESd executable to your [ `GOPATH` ](https://go.dev/doc/gopath_code) environment variable.
+
+   ```bash
+   make install
+   ```
+
+6. Verify that JMES Core is installed correctly.
+
+   ```bash
+   jmesd version --long
+   ```
+
+   **Example**:
+
+   ```bash
+   name: jmes
+   server_name: jmesd
+   version: feat/winning_grants-8d8a9c26047d9b834ada5c3c7c6880857b3ee4e1
+   commit: 8d8a9c26047d9b834ada5c3c7c6880857b3ee4e1
+   build_tags: netgo ledger,
+   go: go version go1.20.4 linux/amd64
+   # ...followed by a lot of dependenecies
+   ```
+
+<Admonition type="tip" icon="💡">
+
+If the `jmesd: command not found` error message is returned, confirm that the Go binary path is correctly configured by running the following command:
+
+```bash
+export PATH=$PATH:$(go env GOPATH)/bin
+```
+
+</Admonition>

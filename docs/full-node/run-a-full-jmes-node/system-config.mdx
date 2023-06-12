@@ -1,0 +1,75 @@
+---
+sidebar_position: 1
+---
+
+import Admonition from '@theme/Admonition';
+
+# System Configuration
+
+
+<Admonition type="caution" icon="☢️" title="Recommended operating systems">
+
+This guide has been tested against Linux distributions only. To ensure a successful production environment setup, consider using a Linux system.
+
+</Admonition>
+
+## Hardware Requirements
+
+The minimum requirements for running a JMES full node are:
+
+| Network                                                                 | CPU cores     | RAM     | Disk                       | BANDWIDTH |
+|-------------------------------------------------------------------------|---------------|---------|----------------------------|-----------|
+| [`jmes-testnet-1`](https://github.com/jmesworld/)                    | 2 | 4 GB   | 20 GB (SSD 5000 MB/s R/W) | 150 Mbps  |
+| [`jmes-888`](https://github.com/jmesworld/)                    | 2 | 4 GB   | 20 GB (SSD 5000 MB/s R/W) | 150 Mbps  |
+
+<Admonition type="caution" icon="☢️" title="Storage requirements">
+
+As the network grows, the minimum hardware requirements will also grow. It is recommended that you monitor the system so you can prevent it from running out of resources. 
+
+</Admonition>
+
+
+## Prerequisites
+
+- [Golang v1.18+ linux/amd64](https://go.dev/dl/)
+
+<details> 
+  <summary> Installing Go for MacOS & Linux </summary>
+<p>
+
+
+  Go releases can be found here: [ https://go.dev/dl/ ](https://go.dev/dl/)
+
+  In your browser, you can right-click the correct release (V1.18) and then click on `Copy Link Address`.
+
+  ```bash
+  # 1. Download the archive
+
+  wget https://go.dev/dl/go1.20.4.linux-amd64.tar.gz
+
+  # Optional: remove previous /go files:
+
+  sudo rm -rf /usr/local/go
+
+  # 2. Unpack:
+
+  sudo tar -C /usr/local -xzf go1.20.4.linux-amd64.tar.gz
+
+  # 3. Add the path to the go-binary to your system path:
+  # (for this to persist, add this line to your ~/.profile or ~/.bashrc or  ~/.zshrc)
+
+  export PATH=$PATH:/usr/local/go/bin
+
+  # 4. Verify your installation:
+
+  go version
+
+  # go version go1.20.4 linux/amd64
+
+  ```
+
+</p>
+</details>
+
+
+- Linux users: `sudo apt-get install -y build-essential`
