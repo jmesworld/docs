@@ -9,7 +9,7 @@ import ThemedImage from '@theme/ThemedImage';
 Note: This is a pre-launch draft (v0.1), and will be subject to changes before the mainnet launch.
 
 
-# 1 Introduction
+## 1 Introduction
 
 JMES is an open-source Application-Specific Cryptocurrency created to power JMES World, a decentralized community for art, with the goal of becoming the world's largest decentralized art ecosystem.
 
@@ -28,12 +28,12 @@ JMES has a max supply of 1,000,000,000 tokens, a blocktime of around 5 seconds, 
 The JMES blockchain is governed by a set of System Smart Contracts detailed below.
 
 
-# 2 Consensus Layer
+## 2 Consensus Layer
 
 The Consensus Layer is the base layer of the platform consisting of a native JMES cryptocurrency implemented as a proof-of-stake (PoS) blockchain secured by an incentivized peer-to-peer (P2P) Validator network employing the Tendermint consensus algorithm.
 
 
-## 2.1 Validators
+### 2.1 Validators
 
 To ensure fairness and security of the JMES protocol, a PoS consensus algorithm determines the weight of validators in the P2P network by the amount of staked JMES used as collateral.
 
@@ -48,7 +48,7 @@ The selected validator produces the next block in the blockchain and earns a bon
 Note that in terms of distribution, at no time are newly created coins held in custody either by an individual wallet or a smart contract. Rather, newly created coins are always distributed directly to the recipient.
 
 
-## 2.2 Delegation
+### 2.2 Delegation
 
 Any holder of JMES can delegate their JMES to a running validator, by bonding an amount of JMES in their own wallet, then referred to as bJMES. The block reward is split proportionally across all delegators, with the coins created whenever those delegators redeem them individually.
 
@@ -57,7 +57,7 @@ For the cost of running the validator, the validator operator can define a commi
 A validator can also self-delegate.
 
 
-## 2.3 Tokenomics
+### 2.3 Tokenomics
 
 JMES has a max supply of 1,000,000,000 coins. The average blocktime is 5 seconds and the initial block reward is 18 JMES, with a reduction schedule of ~12.6% every 12 months. We refer to the unit of division of a JMES to 6 decimal places as a Nils, meaning there are 1 million Nils per JMES coin, for example 0.000001 JMES.
 
@@ -68,7 +68,7 @@ The unlocked coins can be spent and voted with but are still locked against stak
 The purpose of the premint is to provide fixed long-term incentives for the initiators who see JMES as their life's work to build up the world's largest decentralized ecosystem for art.
 
 
-## 2.4 Initial Distribution Period
+### 2.4 Initial Distribution Period
 
 The Initial distribution of JMES is achieved with a fair launch where anyone can setup a validator to compete to mint JMES.
 
@@ -93,7 +93,7 @@ During this initial distribution period of 483 840 blocks, the 50% DAO reward po
 Note that there is no facility at the base layer to engage in any kind of brokerage between JMES tokens and other assets.
 
 
-# 3 Business Layer
+## 3 Business Layer
 
 The Business Layer is a novel way to bridge real-world entities to the Consensus Layer through incentivized decentralization.
 
@@ -104,7 +104,7 @@ DAOs stimulate user growth and economic activity in JMES by providing valuable s
 The Business Layer is implemented as a suite of System Smart Contracts. These smart contracts are integrated into the Consensus Layer, enabling its core Identity, DAO, and Governance services.
 
 
-## 3.1 Identities
+### 3.1 Identities
 
 Identities are the core construct in the Business Layer representing users who will engage with the system as individuals or as a group (as Directors of a DAO), implemented via a System Contract called the Identity Service within the Business Layer.
 
@@ -113,31 +113,31 @@ The Identity Service provides the ability to register validated, human-readable 
 Identities can be resolved via bi-directional lookup: A wallet address can be resolved into a name and a name can be resolved into a wallet address. It also allows you to retrieve a paginated list of all existing DAOs.
 
 
-### 3.1.1 User Identities
+#### 3.1.1 User Identities
 
 To facilitate social interaction in JMES and prevent spoofing, users can create their own User Identities. This allows anyone to sign up with a unique username on the blockchain.
 
 
-### 3.1.2 DAO Identities
+#### 3.1.2 DAO Identities
 
 DAO Identities are special Identities that any User Identity can create, the instances of which are known as DAOs in JMES, that represent real-world businesses and organizations that are funded from the blockchain via the Governance System.
 
 A name for the DAO must be provided on creation that is unique across the shared DAO Identity and User Identity namespace, to make it easier to identify and find them in the network and prevent spoofing via a duplicate DAO name.
 
 
-## 3.2 DAOs
+### 3.2 DAOs
 
 DAOs are the instances of DAO Identities described above and are the only entities that can raise Governance Proposals via the Governance System.
 
 Creating a DAO involves collecting the cryptographic addresses of the User identities that will control the DAO's wallet, known as the Directors, and assigning a voting power to each address and a threshold that is required to pass a DAO Proposal. Up to 9 Directors can be defined. This key-value pair list gets sent to the DAO System Smart Contract which then instantiates a copy of the DAO code and assigns the new DAO its own multisig contract address.
 
 
-### 3.2.1 Directorship
+#### 3.2.1 Directorship
 
 The list of Directors can be modified by a DAO Proposal itself, to update the set of Directors, the voting power per Director and voting threshold.
 
 
-### 3.2.2 DAO Proposals
+#### 3.2.2 DAO Proposals
 
 DAO Proposals enable the Directors to poll decisions, vote on spending of DAO funds, and vote on raising Governance Proposals from the DAO to the wider Governance System, within the Director set.
 
@@ -146,7 +146,7 @@ DAO Proposals can be raised by any Director, then each address can vote on the p
 Funds in the DAO Identity cannot be spent without a DAO Proposal that passes authorizing the spend.
 
 
-### 3.2.3 Official Features
+#### 3.2.3 Official Features
 
 Official Features are special features available within the Business Layer that can be awarded to any DAO that requests them via a Governance Proposal that is passed by voting bJMES holders.
 
@@ -161,7 +161,7 @@ Initially, the only Official Feature is for the DAO to act as an Art Dealer, giv
 Each DAO can be awarded with multiple Official Features at any time, so that DAOs themselves are not considered Official as a whole, only in the use of specific features that they take.
 
 
-### 3.2.4 Core DAOs
+#### 3.2.4 Core DAOs
 
 The protocol allows for 3 DAOs to be elected into Core Slots via a Governance Proposal, enabling them to work together to provide Core functions for the JMES ecosystem, but at the same time be removable or replaceable at all times.
 
@@ -176,19 +176,19 @@ The three Core Slot positions available in the protocol are named to represent t
 Core DAOs must have at least 3 Directors and no more than 9. A minimum of 2 Directors are required to pass the proposal threshold. Provided the identities are real individuals, this helps prevent attacks and key loss while also promoting a basic level of decentralized control over network funds within the DAO.
 
 
-## 3.3 Governance System
+### 3.3 Governance System
 
 In JMES, governance involves DAOs requesting funding and official features from the Business Layer through governance proposals. These proposals are created by DAOs and voted on by bJMES holders. The voting takes place within a recurring ~4-week voting/posting governance cycle. The votes are tallied, and the governance proposals either pass or fail based on the results.
 
 
-### 3.3.1 Governance Proposals
+#### 3.3.1 Governance Proposals
 
 Any DAO can create a Governance Proposal by burning an amount of 10 JMES to send the proposal to the Governance System Contract (GSC). Once a proposal has passed the voting threshold and the voting period has ended, anyone can pay the fee to conclude the proposal and execute attached messages.
 
 There are five types of Governance Proposal that any DAO can create:
 
 
-#### 3.3.1.1 Text Proposal
+##### 3.3.1.1 Text Proposal
 
 A Text Proposal is the most basic type of Governance Proposal, consisting of a Title and a Description, and an optional attachment of a Funding Request.
 
@@ -197,14 +197,14 @@ Without a Funding Request, Text Proposals enable DAOs to take a survey in the ne
 With a Funding Request attached, the Text Proposal can be used as the basic element to fund DAOs from the blockchain. An example could be the commissioning of an art piece.
 
 
-#### 3.3.1.2 Request Feature Proposal
+##### 3.3.1.2 Request Feature Proposal
 
 A Request Feature Proposal allows a DAO to request permission to use an Official Feature from the set of available Official Features within the System Smart Contracts maintained on the Business Layer by the currently elected Technology Core DAO.
 
 This type of proposal also requires the DAO who creates it to attach a Funding Request, with the period of the funding used to revoke the permission to use the feature when the funding period expires, if the proposal passes. Note that the funding amount can still be specified as zero, but the period must be specified.
 
 
-#### 3.3.1.3 Core Slot Proposal
+##### 3.3.1.3 Core Slot Proposal
 
 A Core Slot Proposal is a Governance Proposal that enables any DAO to request to occupy a Core Slot, enabling it to perform functions as part of the decentralized Core Team.
 
@@ -223,7 +223,7 @@ A Core DAO can be verified as occupying a Core Slot if if they have a passed and
 Since a DAO can only hold one core slot at a time, a DAO currently holding a core slot has to manually resign that slot during the voting period in anticipation of their passing proposal for a different core slot. If their passing proposal has the fee paid to be concluded (which can be done by anyone) and the DAO still holds their old slot, it will forfeit the new slot even though the proposal has passed the voting threshold.
 
 
-#### 3.3.1.4 Improvement Proposal
+##### 3.3.1.4 Improvement Proposal
 
 Improvement proposals implement code migration changes to the System Smart Contracts and can be raised by the Core Tech DAO.
 
@@ -232,12 +232,12 @@ If the proposal is passed, the code upgrade will automatically be performed upon
 An Improvement Proposal cannot have funding attached.
 
 
-#### 3.3.1.5 Revoke Core Slot Proposal
+##### 3.3.1.5 Revoke Core Slot Proposal
 
 A Revoke Core Slot proposal can also remove any DAO that's occupying a Core Slot, which if passes, leaves the Slot empty and stops the funding for the DAO.
 
 
-### 3.3.2 Funding Requests
+#### 3.3.2 Funding Requests
 
 DAOs may include a Funding Request as an attachment to any Governance Proposal type, except Revoke Core-Slot and Improvement Proposals. This requests permission to issue new coins to themselves within their own wallet, from within the 50% of total block rewards available across all winning DAO proposals, if the Governance Proposal passes.
 
@@ -256,7 +256,7 @@ JMES Distribution Example:
 ![alt_text](distribution-schema.png "distribution schema")
 
 
-### 3.3.3 Governance Cycle
+#### 3.3.3 Governance Cycle
 
 The Governance Cycle is the recurring period of DAOs raising Governance Proposals followed by JMES holders voting on those proposals. It is split into two weeks of raising Governance Proposals, followed by two weeks of voting on those proposals, at which point votes are tallied and the cycle loops. This means that a minimum of 15 days is required to create a proposal and have it voted in.
 
@@ -265,7 +265,7 @@ The Governance Cycle starts after launch so that new proposals can be raised in 
 Note that the Governance Cycle periods are calculated based on time, with 607126.1538 seconds in a week (this is an average considering the leap years in the following 10 years). Once a proposal is passed, the funding is paid out linearly according to the blockheight.
 
 
-### 3.3.4 Voting
+#### 3.3.4 Voting
 
 Any JMES holder is eligible to vote on any Governance Proposal.
 
@@ -276,7 +276,7 @@ Bonded coins remain in the owner's wallet at all times and are never transmitted
 Unbonding JMES has a delay of 21 days during which time they can't be used for voting or earning staking rewards, however, bonding is instant, and instantly gives voting rights.
 
 
-### 3.3.5 Tallying
+#### 3.3.5 Tallying
 
 Votes on Governance Proposals are tallied at the end of the voting cycle and a determination is made on which proposals pass or fail via the protocol as follows:
 
