@@ -22,14 +22,14 @@ Monikers can only contain ASCII characters. Using Unicode characters will render
 
 You can update your node's moniker by editing the `moniker` field in `~/.jmes/config/config.toml`.
 
-## Update minimum gas prices
+## [Optional] Update minimum gas prices
 
 1. Open `~/.jmes/config/app.toml`.
 
 2. Modify `minimum-gas-prices` and set the minimum price of gas a validator will accept to validate a transaction and to prevent spam.
 
-The recommended setting is:
-`minimum-gas-prices = "0.15ujmes"`
+The recommended setting post IDP (~ first month) to prevent spam transactions is:
+`minimum-gas-prices = "0.1ujmes"`
 
 **Example**:
 
@@ -37,7 +37,7 @@ The recommended setting is:
 # The minimum gas prices a validator is willing to accept for processing a
 # transaction. A transaction's fees must meet the minimum of any denomination
 # specified in this config (e.g. 0.25token1;0.0001token2).
-minimum-gas-prices = "0.01133ujmes"
+minimum-gas-prices = "0.1ujmes"
 
 ```
 
