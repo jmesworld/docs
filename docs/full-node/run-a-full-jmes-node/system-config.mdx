@@ -19,8 +19,8 @@ The minimum requirements for running a JMES full node are:
 
 | Network                                                                 | CPU cores     | RAM     | Disk                       | BANDWIDTH |
 |-------------------------------------------------------------------------|---------------|---------|----------------------------|-----------|
-| [`jmes-testnet-1`](https://github.com/jmesworld/)                    | 2 | 4 GB   | 20 GB (SSD 5000 MB/s R/W) | 150 Mbps  |
-| [`jmes-888`](https://github.com/jmesworld/)                    | 2 | 4 GB   | 20 GB (SSD 5000 MB/s R/W) | 150 Mbps  |
+| `jmes-namito`                | 2 | 4 GB   | 20 GB (SSD 5000 MB/s R/W) | 150 Mbps  |
+| `jmes-picasso`                | 2 | 4 GB   | 20 GB (SSD 5000 MB/s R/W) | 150 Mbps  |
 
 <Admonition type="caution" icon="☢️" title="Storage requirements">
 
@@ -31,7 +31,7 @@ As the network grows, the minimum hardware requirements will also grow. It is re
 
 ## Prerequisites
 
-- [Golang v1.18+ linux/amd64](https://go.dev/dl/)
+- [Golang v1.21+ linux/amd64](https://go.dev/dl/)
 
 <details> 
   <summary> Installing Go for MacOS & Linux </summary>
@@ -64,7 +64,7 @@ As the network grows, the minimum hardware requirements will also grow. It is re
 
   go version
 
-  # go version go1.20.4 linux/amd64
+  # go version go1.21+ linux/amd64
 
   ```
 
