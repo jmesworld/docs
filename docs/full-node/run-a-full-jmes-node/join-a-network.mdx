@@ -17,7 +17,7 @@ The simplest JMES network you can set up is a local testnet with just a single n
 1. Initialize your genesis file that will bootstrap the network. Replace the following variables with your own information:
 
    ```bash
-     jmesd init --chain-id=<private-network-id> <node-moniker>
+     jmesd init --chain-id=<network-id> <node-moniker>
    ```
 
 2. Generate a JMES account. Replace the variable with your account name:
@@ -30,9 +30,9 @@ The simplest JMES network you can set up is a local testnet with just a single n
 Run the following commands to add your account and set the initial balance:
 
 ```bash
-jmesd add-genesis-account $(jmesd keys show <account-name> -a) 20000000000000ujmes
-jmesd gentx <my-account> 100000000ujmes --chain-id=<private-network-id>
-jmesd collect-gentxs
+jmesd genesis add-genesis-account $(jmesd keys show <account-name> -a) 20000000000000ujmes
+jmesd genesis gentx <my-account> 100000000ujmes --chain-id=<network-id>
+jmesd genesis collect-gentxs
 ```
 
 ### 3. Start your private JMES network
@@ -55,8 +55,8 @@ Specify the network you want to join by choosing the corresponding **genesis fil
 
 	| Network     | Type    | Genesis                                                                                        | Address book                                                                              |
 | :---------- | :------ | :------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------------------------- | 
-| `jmes-testnet-1`   | Testnet | [Genesis Link](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-testnet-1/genesis.json) |  Peer List Community maintained by [JMES](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-testnet-1/addrbook.json) |
-| `jmes-888`   | Testnet | [Genesis Link](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-888/genesis.json) |  Peer List Community maintained by [JMES](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-888/addrbook.json) |
+| `jmes-namito`   | Testnet | [Genesis Link](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-namito/genesis.json) |  Peer List Community maintained by [JMES](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-namito/addrbook.json) |
+| `jmes-picasso`   | Testnet | [Genesis Link](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-picasso/genesis.json) |  Peer List Community maintained by [JMES](https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-picasso/addrbook.json) |
 
 ### 2. Download genesis file and address book
 
@@ -71,11 +71,11 @@ Choose a `testnet` or `mainnet` address type and download the appropriate genesi
 **Example**:
 
 ```bash
-# Obtain the genesis for jmes-888:
-wget https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-testnet-1/genesis.json -O ~/.jmes/config/genesis.json
+# Obtain the genesis for jmes-namito:
+wget https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-namito/genesis.json -O ~/.jmes/config/genesis.json
 
-# Obtain the addressbook for the jmes-888:
-wget https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-testnet-1/addrbook.json -O ~/.jmes/config/addrbook.json
+# Obtain the addressbook for the jmes-picasso:
+wget https://raw.githubusercontent.com/jmesworld/testnet/main/jmes-picasso/addrbook.json -O ~/.jmes/config/addrbook.json
 ```
 
 Continue to the [Sync](sync.mdx) page to find out more about syncing your node.
