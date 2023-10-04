@@ -10,10 +10,16 @@ JMES Core is the official Golang reference implementation of the JMES node softw
 
 ## Get the JMES Core source code
 
-1. Use `git` to retrieve [JMES Core](https://github.com/jmesworld/core/), and check out the `feat/winning_grants` branch, which contains the latest stable release. You can find the latest tag on the [tags page](https://github.com/jmesworld/core/tags) or via autocomplete in your terminal: type `git checkout v` and press `<TAB>`.
+1. Use `git` to retrieve [JMES Core](https://github.com/jmesworld/core/), which contains the latest stable release. You can find the latest tag on the [tags page](https://github.com/jmesworld/core/tags) or via autocomplete in your terminal: type `git checkout v` and press `<TAB>`.
 
    ```
    git clone https://github.com/jmesworld/core
+   ```
+
+The specific branch `release/0.47.x-testnet` will be the branch to checkout instead to directly have everything setup for the testnet.   
+
+  ```
+   git clone -b release/0.47.x-testnet https://github.com/jmesworld/core
    ```
 
 2. Build JMES Core. This will install the JMESd executable to your [ `GOPATH` ](https://go.dev/doc/gopath_code) environment variable.
