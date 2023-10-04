@@ -16,12 +16,12 @@ Before you attempt to sync your node, confirm that you have properly set up your
 
 ## Sync from genesis
 
-### JMES-testnet-1
+### Testnet jmes-namito
 
 1. Update the `persistent_peers` setting with a list of stable persistent peers in your `config.toml` file. Use the following commands:
 
 ```
-PEERS=2a39d42bb299b913e5dbbaf9a5e458fb3ff7536b@164.92.191.45:26656,eb490967a016bbcb361ab2ba1f6d2a2ca1eb8593@46.101.197.51:26656
+PEERS=70bf22e2a103e3a00065a540b3963663a34dec25@51.38.52.37:26656
 sed -i.bak -e "s|^persistent_peers *=.*|persistent_peers = \"$PEERS\"|" $HOME/.jmes/config/config.toml
 ```
 
@@ -41,12 +41,12 @@ Nodes take about an hour to start syncing. This wait time is normal. Before trou
 
 From here, you can [monitor the sync](#monitor-the-sync). Make sure to check on your node periodically to ensure optimal performance.
 
-### Udo mainnet
+### Mainnet jmes-picasso
 
 1. Update the `persistent_peers` setting with a list of stable persistent peers in your `config.toml` file. Use the following commands:
 
 ```
-PEERS=2a39d42bb299b913e5dbbaf9a5e458fb3ff7536b@164.92.191.45/:26656,eb490967a016bbcb361ab2ba1f6d2a2ca1eb8593@46.101.197.51:26656
+PEERS=tbd
 sed -i.bak -e "s|^persistent_peers *=.*|persistent_peers = \"$PEERS\"|" $HOME/.jmes/config/config.toml
 ```
 
