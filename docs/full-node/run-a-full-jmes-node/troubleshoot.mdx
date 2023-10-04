@@ -37,7 +37,7 @@ To change the genesis version, delete `~/.jmes/config/genesis.json`.
 You can recreate a genesis version via the following steps:
 
 ```bash
- jmesd add-genesis-account $(jmesd keys show <account-name> -a) 100000000ubJMES,1000usd
+ jmesd add-genesis-account $(jmesd keys show <account-name> -a) 100000000ujmes
  jmesd gentx <account-name> 10000000ubJMES --chain-id=<network-name>
  jmesd collect-gentxs
 ```
