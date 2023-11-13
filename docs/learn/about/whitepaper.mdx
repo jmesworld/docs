@@ -4,10 +4,7 @@ import ThemedImage from '@theme/ThemedImage';
 # JMES Whitepaper
 
 
-**JMES Whitepaper Pre-launch v0.1**
-
-Note: This is a pre-launch draft (v0.1), and will be subject to changes before the mainnet launch.
-
+**JMES Whitepaper v0.1**
 
 ## 1 Introduction
 
@@ -23,7 +20,7 @@ JMES is designed to address the problem of centralization in the art industry by
 
 This is needed to enable JMES to scale as a decentralized global application using free-market principles to explore and deliver the right incentive and business models to grow its userbase.
 
-JMES has a max supply of 1,000,000,000 tokens, a blocktime of around 5 seconds, an initial block reward of 18 JMES, and a reduction schedule of ~12.6% every 12 months.
+JMES has a max supply of 1,000,000,000 tokens, a blocktime of around 5 seconds, an initial block reward of 17.92 JMES, and a reduction schedule of ~12.6% every 12 months.
 
 The JMES blockchain is governed by a set of System Smart Contracts detailed below.
 
@@ -59,11 +56,11 @@ A validator can also self-delegate.
 
 ### 2.3 Tokenomics
 
-JMES has a max supply of 1,000,000,000 coins. The average blocktime is 5 seconds and the initial block reward is 18 JMES, with a reduction schedule of ~12.6% every 12 months. We refer to the unit of division of a JMES to 6 decimal places as a Nils, meaning there are 1 million Nils per JMES coin, for example 0.000001 JMES.
+JMES has a max supply of 1,000,000,000 coins. The average blocktime is 5 seconds and the initial block reward is 17.92 JMES, with a reduction schedule of ~12.6% every 12 months. We refer to the unit of division of a JMES to 6 decimal places as a Nils, meaning there are 1 million Nils per JMES coin, for example 0.000001 JMES.
 
-A total premint of 100,000,000 JMES, or 10% of maximum supply, is created via transactions in the genesis block. These premint coins are locked against spending and voting in the protocol initially, then gradually unlocked with each consecutive block by an amount in proportion to the intended total premint % of max supply, i.e., 10%. For example, with the initial block reward of 18 JMES per block before the first block reward reduction period, 2 of the JMES locked in the premint wallets are also unlocked per block, in proportion to the wallets share of the total premint, meaning the effective total addition to circulating supply was 20 JMES in that block. After the first reduction, when the block reward is reduced to 15.7283 JMES per block, the total unlocked premint reduces to 1.7476 JMES per block for that period, and so forth.
+A total premint of 104,000,000 JMES, or 10.4% of maximum supply, is created via transactions in the genesis block. These premint coins are locked against spending and voting in the protocol initially, then gradually unlocked with each consecutive block by an amount in proportion to the intended total premint % of max supply, i.e., 10.4%. For example, with the initial block reward of 17.92 JMES per block before the first block reward reduction period, 2.08 of the JMES locked in the premint wallets are also unlocked per block, in proportion to the wallets share of the total premint, meaning the effective total addition to circulating supply was 20 JMES in that block. After the first reduction, when the block reward is reduced to ~15,658 JMES per block, the total unlocked premint reduces to ~1,817 JMES per block for that period, and so forth.
 
-The unlocked coins can be spent and voted with but are still locked against staking in the premint address, to avoid a situation where the 10% is exceeded by the premint holders, which would break the intention of the premint agreements. This approach combined means that the maximum percent of circulating supply that is issued to preminters does not exceed the intended 10% allocation.
+The unlocked coins can be spent and voted with but are still locked against staking in the premint address, to avoid a situation where the 10.4% is exceeded by the premint holders, which would break the intention of the premint agreements. This approach combined means that the maximum percent of circulating supply that is issued to preminters does not exceed the intended 10.4% allocation.
 
 The purpose of the premint is to provide fixed long-term incentives for the initiators who see JMES as their life's work to build up the world's largest decentralized ecosystem for art.
 
@@ -76,11 +73,11 @@ The code for JMES is fully open source under MIT/Apache2 license and will be pub
 
 During the first ~28 days (483 840 first blocks), JMES will be in the Initial Distribution Period setup. This period allows validators to be created, be included in the active validator set and to withdraw rewards and commission without any required stake or fee.
 
-Validators within the active set compete to be the block proposer.
+Validators within the active set compete to be the block proposer. 
 
 Based on the proposer selection weighting mechanism, the selected proposer is entitled to a 4% reward.
 
-The ability to mint is given to a maximum of 100 validators. If the active set drops below 100 (i.e. if validators drop out of the set), new non-active validators will enter the set.
+The ability to mint is given to a maximum of 100 validators. If the active set drops below 100 (i.e. if validators drop out of the set), new non-active validators will enter the set. 
 
 After the initial distribution period ends, a stake is required to join the set, meaning if the number of validators in the set drops below the limit of 100, validators outside of the set without a stake won't be allowed into the set.
 
@@ -88,7 +85,7 @@ Validator's commission will only activate at the end of this 483,840 blocks peri
 
 As a Cosmos compatible blockchain, JMES can be exchanged for other cryptocurrencies using existing Cosmos compatible DEXs (decentralized exchanges). The initial JMES source code developers will not provide any direct exchange services. 3rd party exchange services exist that can be integrated into the client wallet if the DAO decides to pursue this option after launch.
 
-During this initial distribution period of 483 840 blocks, the 50% DAO reward portion of block rewards (5,259,600 JMES) aren't sent to DAOs, as DAOs can only be created when that period ends. Instead, these coins are allocated to Validators, meaning that validators earn 100% of the block rewards during this period, from the genesis block until block 483,841.
+During this initial distribution period of 483 840 blocks, the 50% DAO reward portion of block rewards aren't sent to DAOs, as DAOs can only be created when that period ends. Instead, these coins are allocated to Validators, meaning that validators earn 100% of the block rewards during this period, from the genesis block until block 483,841.
 
 Note that there is no facility at the base layer to engage in any kind of brokerage between JMES tokens and other assets.
 
@@ -134,7 +131,7 @@ Creating a DAO involves collecting the cryptographic addresses of the User ident
 
 #### 3.2.1 Directorship
 
-The list of Directors can be modified by a DAO Proposal itself, to update the set of Directors, the voting power per Director and voting threshold.
+The list of Directors can be modified by a DAO Proposal itself.
 
 
 #### 3.2.2 DAO Proposals
@@ -220,7 +217,7 @@ A Funding Request must be attached to each Core Slot Proposal, so that the perio
 
 A Core DAO can be verified as occupying a Core Slot if if they have a passed and non-expired Core Slot proposal existing, with no subsequent Core Slot proposals by another DAO for the same Core Slot was passed, and no subsequent Revoke Core Slot Proposal for the DAO's Core Slot that passed.
 
-Since a DAO can only hold one core slot at a time, a DAO currently holding a core slot has to manually resign that slot during the voting period in anticipation of their passing proposal for a different core slot. If their passing proposal has the fee paid to be concluded (which can be done by anyone) and the DAO still holds their old slot, it will forfeit the new slot even though the proposal has passed the voting threshold.
+Since a DAO can only hold one core slot at a time, a DAO currently holding a core slot has to manually resign that slot during the voting period in anticipation of their passing proposal for a different core slot. If their passing proposal has the fee paid to be concluded (which can be done by anyone) and the DAO still holds their old slot, it will forfeit the new slot even though the proposal has passed the voting threshold. 
 
 
 ##### 3.3.1.4 Improvement Proposal
@@ -241,7 +238,7 @@ A Revoke Core Slot proposal can also remove any DAO that's occupying a Core Slot
 
 DAOs may include a Funding Request as an attachment to any Governance Proposal type, except Revoke Core-Slot and Improvement Proposals. This requests permission to issue new coins to themselves within their own wallet, from within the 50% of total block rewards available across all winning DAO proposals, if the Governance Proposal passes.
 
-The request for funding must include an amount of JMES and a number of months over which the JMES will be paid, which is converted to number of blocks by the GSC, using the average block time of 5 seconds and the assumption of 2,629,746 seconds in a month.
+The request for funding must include an amount of JMES and a number of months over which the JMES will be paid, which is converted to number of blocks by the GSC, using the average block time of 5 seconds and the assumption of 2,629,745 seconds in a month.
 
 For example, a DAO wants to be able to allocate themselves 100,000 new JMES tokens over 3 months: The 100.000 JMES will be paid to the DAO address over the next 1,577,847 blocks (rounded down) at 0.063377 JMES (equals 6,3377 Nils) per block.
 
@@ -284,4 +281,4 @@ Governance Proposals pass when the net total of YES votes is equal to or greater
 
 For Governance Proposals that pass with non-zero Funding Requests, on each block during the funding period of the request, the decision to allow funding is calculated by ordering all Governance Proposals with Funding Requests eligible at the time of the current block in order of YES minus NO votes. This means that the more popular Governance Proposals get priority within the available block rewards allocated to the DAO budget, and once the first eligible proposal's entitlement would exceed that request, it and any less popular proposals following it are not paid.
 
-When Governance Proposals ask for money and they are approved, the decision to give them funding is determined by comparing the number of "yes" votes minus the number of "no" votes. This calculation is done for each block during the funding period. The proposals are then ranked based on this result. The more popular proposals are given priority for the available funds in the DAO budget. However, if the first eligible proposal's funding exceeds the available amount, it and any less popular proposals that come after it will not receive any money.
+When Governance Proposals ask for tokens and they are approved, the decision to give them funding is determined by comparing the number of "yes" votes minus the number of "no" votes. This calculation is done for each block during the funding period. The proposals are then ranked based on this result. The more popular proposals are given priority for the available funds in the DAO budget. However, if the first eligible proposal's funding exceeds the available amount, it and any less popular proposals that come after it will not receive any tokens.
